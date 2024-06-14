@@ -25,14 +25,45 @@
   // 1- Subir containers (banco de dados e SGBD):
   
     docker-compose -f docker-compose-postgres.yaml up -d
+
+  // Acessar pgadmin:
   
+    http://localhost:5050/
+
+  // Inserir credenciais
+  
+  usuario
+  
+    admin@root.com
+
+  senha
+
+    123456
+
+  //Criar novo servidor
+
+  General
+  
+  - definir nome
+
+  Connection
+
+  - host name: inserir nome do container do postgres
+  - port: 5432 (padrão)
+  - maintenance database: postgres
+  - username: postgres
+
+  # Diretório: /src/planilha_google/
+
+  Colar arquivo credentials.json (com as credenciais disponibilizadas no Google Cloud -> Google Sheets API)
+
   # Diretório: / (raíz)
   
   // 2- Instalar dependências:
     
     npm install --save-dev
     
-  // 3 - Criar banco de dados:
+  // 3 - Criar banco de dados (apenas o banco de dados não ter sido criado automaticamente pelo pgadmin):
     
     npx sequelize-cli db:create
     
