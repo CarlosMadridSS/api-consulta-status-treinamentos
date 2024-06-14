@@ -79,3 +79,14 @@
 
     acessar http://localhost:3030/
 
+# Modo de Uso
+
+Recomendação
+  
+  Antes de realizar quaisquer requisições, deve-se conferir a disponibilidade na rota:
+
+    http://localhost:3030/disponibilidade
+
+  se disponível, podem ser realizadas as requisiçoes.
+
+
