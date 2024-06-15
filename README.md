@@ -52,6 +52,7 @@
   - port: 5432 (padrão)
   - maintenance database: postgres
   - username: postgres
+  - password: 123456
 
   # Diretório: /src/planilha_google/
 
