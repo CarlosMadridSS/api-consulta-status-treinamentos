@@ -63,7 +63,7 @@
     
     npm install --save-dev
     
-  // 3 - Criar banco de dados (apenas o banco de dados não ter sido criado automaticamente pelo pgadmin):
+  // 3 - Criar banco de dados (apenas se o banco de dados não tiver sido criado automaticamente pelo pgadmin):
     
     npx sequelize-cli db:create
     
