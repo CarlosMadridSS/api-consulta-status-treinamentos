@@ -90,6 +90,20 @@ Recomendação
 
   se disponível, podem ser realizadas as requisiçoes.
 
-# ---------------Observação---------------------
+# ---------------Observações---------------------
 
-  A API faz uma sincronização com a planilha a cada 5 minutos.
+De uso: 
+
+  - A API faz uma sincronização com a planilha a cada 5 minutos.
+
+De aplicação:
+
+- A aplicação está sendo executada em modo de desenvolvimento. Fica a critério de quem implementar para fazer as modificações necessárias para a produção.
+
+  Basta modificar a variável de ambiente .env->NODE_ENV para:
+  
+      production
+
+  E inicializar a aplicação com:
+
+      npm run start
