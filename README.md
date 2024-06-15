@@ -1,7 +1,7 @@
 # Dependências do Computador
-  Node.js (v20.14.0 ou superior)
-  Docker (certificar instalação de docker-compose)
-  Git
+  - Node.js (v20.14.0 ou superior)
+  - Docker (certificar instalação de docker-compose)
+  - Git
 
 # Inicializando pela primeira vez
 
@@ -89,4 +89,6 @@ Recomendação
 
   se disponível, podem ser realizadas as requisiçoes.
 
+# ---------------Observação---------------------
 
+  A API faz uma sincronização com a planilha a cada 5 minutos.
