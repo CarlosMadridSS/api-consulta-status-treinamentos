@@ -1,5 +1,7 @@
 # Dependências do Computador
   - Node.js (v20.14.0 ou superior)
+    - npm (v10.7.0 ou superior)
+    - npx (v10.7.0 ou superior) 
   - Docker (certificar instalação de docker-compose)
   - Git
 
