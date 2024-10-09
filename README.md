@@ -1,60 +1,26 @@
 # Dependências do Computador
-  - Node.js (v20.14.0 ou superior)
+  - Node.js v20.18.0 (LTS)
     - npm (v10.7.0 ou superior)
     - npx (v10.7.0 ou superior) 
-  - Docker (certificar instalação de docker-compose)
   - Git
 
-# Inicializando pela primeira vez
+# //------------No projeto-----------------
 
-  # // ---acessar acessar ou criar planilha—
-  
-  |Não possui uma conta de serviço Google Sheets API?|
-  
-  Logue em 
-  
-    https://console.cloud.google.com/
-  
-  e crie uma conta de serviços para o serviço de API “Google Sheets API”. Após criar a conta, baixe as credenciais e renomeie o arquivo (json) para ‘credentials.json’ e cole na pasta do projeto ‘planilha_google’. Feito isso, insira o e-mail criado nas contas de serviço do Google Cloud na planilha configurada. Por último, copie o ID da planilha e cole no campo SHEET_ID do arquivo .env presente no projeto.
-    
-  Download de planilha modelo:
-  
-    https://docs.google.com/spreadsheets/d/1leCvngjDKF5W5CrpzLvzQXGwEA_M3T5y/edit?usp=drive_link&ouid=116816249699102537188&rtpof=true&sd=true
+  # Banco de dados (MySQL)
 
-# //------------No projeto------------------
-  # Diretório: /docker
-  
-  // 1- Subir containers (banco de dados e SGBD):
-  
-    docker-compose -f docker-compose-postgres.yaml up -d
+  Defina/crie o seu usuário como:
 
-  // Acessar pgadmin:
-  
-    http://localhost:5050/
+    root
 
-  // Inserir credenciais
-  
-  usuario
-  
-    admin@root.com
-
-  senha
+  Defina a sua senha como:
 
     123456
-
-  //Criar novo servidor
-
-  General
   
-  - definir nome
 
-  Connection
+  Após fazer a sua conexão, crie um banco de dados chamado:
 
-  - host name: inserir nome do container do postgres
-  - port: 5432 (padrão)
-  - maintenance database: postgres
-  - username: postgres
-  - password: 123456
+    treinamentos
+
 
   # Diretório: /src/planilha_google/
 
@@ -62,19 +28,23 @@
 
   # Diretório: / (raíz)
   
-  // 2- Instalar dependências:
+  // 1- Instalar dependências:
     
     npm install --save-dev
+
+  *Caso apareça algum aviso de vulnerabilidade, use:
+
+    npm update
+
+  e depois:
+
+    npm audit fix
     
-  // 3 - Criar banco de dados (apenas se o banco de dados não estiver sido criado automaticamente pelo pgadmin):
-    
-    npx sequelize-cli db:create
-    
-  //4 - Migrar tabelas:
+  //2 - Migrar tabelas:
   
     npx sequelize-cli db:migrate
     
-  //5 - Inicializar projeto:
+  //3 - Inicializar projeto:
     
     npm run dev
 
