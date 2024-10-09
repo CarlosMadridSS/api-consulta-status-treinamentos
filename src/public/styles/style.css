@@ -1,0 +1,19 @@
+
+
+.e404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 98vh;
+    color: white;
+}
+
+.index, .e404{
+    background-color: black;
+
+}
+
+.index, .index ul > li > a{
+    color: white;
+}
