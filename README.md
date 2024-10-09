@@ -4,6 +4,10 @@
     - npx (v10.7.0 ou superior) 
   - Git
 
+# Recomendações de SGBDS
+  - Dbeaver
+  - MySQL Workbench
+
 # //------------No projeto-----------------
 
   # Banco de dados (MySQL)
@@ -17,7 +21,7 @@
     123456
   
 
-  Após fazer a sua conexão, crie um banco de dados chamado:
+  Após fazer a sua conexão, com seu SGBD de preferência, crie um banco de dados chamado:
 
     treinamentos
 
