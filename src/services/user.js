@@ -10,6 +10,16 @@ const saltRounds = 10;
 
 const registerUser = async (username, password, callback) => {
   try {
+    // Verificar se o username já existe
+    const existingUsers = await sequelize.query('SELECT * FROM colaborador WHERE username = ?', {
+      replacements: [username],
+      type: QueryTypes.SELECT
+    });
+
+    if (existingUsers.length > 0) {
+      return callback(new Error('Username already exists'));
+    }
+
     const hash = await bcrypt.hash(password, saltRounds);
     await sequelize.query('INSERT INTO colaborador (username, password) VALUES (?, ?)', {
       replacements: [username, hash],

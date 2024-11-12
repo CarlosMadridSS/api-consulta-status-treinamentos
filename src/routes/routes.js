@@ -1,5 +1,7 @@
 const express = require('express')
 const path = require('path')
+const passport = require('../services/auth');
+const { registerUser, authenticateUser } = require('../services/user');
 
 const resStatus = require('../controllers/res/resStatus')
 const resColaborador = require('../controllers/res/resColaborador')
@@ -13,10 +15,6 @@ const refreshStatus = require('../controllers/put/putStatus')
 
 const refresh = require('../controllers/refresh')
 const { displayvideo } = require('googleapis/build/src/apis/displayvideo')
-
-
-
-
 
 const routes = express.Router()
 
@@ -80,5 +78,48 @@ const routes = express.Router()
 
         res.json({disponibilidade: availability})
     })
+
+// Autenticação
+    routes.post('/register', async (req, res) => {
+        const { nome, username, password } = req.body;
+        try {
+            const newColaborador = await Colaborador.create({ nome, username, password });
+            res.status(201).json(newColaborador);
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    });
+    
+
+    routes.post('/login', (req, res) => {
+        const { username, password } = req.body;
+        authenticateUser(username, password, (err, token) => {
+            if (err) return res.status(500).json({ error: err.message });
+            if (!token) return res.status(401).json({ message: 'Invalid credentials' });
+            res.status(200).json({ token });
+        });
+    });
+
+// Servir a página de login
+    routes.get('/login.html', (req, res) => {
+        res.sendFile(path.join(__dirname, '../public/views', 'login.html'));
+    });
+
+// Servir a página de registro
+    routes.get('/register.html', (req, res) => {
+        res.sendFile(path.join(__dirname, '../public/views', 'register.html'));
+    });
+
+// Rota protegida
+    routes.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
+        res.status(200).json({ message: 'You have accessed a protected route' });
+    });
+
+// Middleware para proteger a rota index.html
+    routes.get('/public/views/index.html', passport.authenticate('jwt', { session: false }), (req, res) => {
+        res.sendFile(path.join(__dirname, '../public/views/index.html'));
+    });
+
+
 
 module.exports = routes;

@@ -1,17 +1,27 @@
 (async () => {
 
-    const database = require('./init')
+    const { Sequelize } = require('sequelize');
+    const dotenv = require('dotenv');
+    dotenv.config();
+
+    const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+      host: process.env.DB_HOST,
+      dialect: 'mysql'
+    });
+
+    module.exports = sequelize;
+
     //const Status = require('../models/status')
 
     //Testando conexão
     try {
-        database.authenticate();
+        sequelize.authenticate();
         console.log('Sucesso ao conectar ao banco de dados.');
       } catch (error) {
         console.error('Erro ao conectar ao banco de dados:', error);
       }
 
-      //await database.sync().then(() => console.log('Banco de dados sincronizado com sucesso!')).catch(err => console.log(`Erro ao sincronizar banco de dados: ${err}`))
+      //await sequelize.sync().then(() => console.log('Banco de dados sincronizado com sucesso!')).catch(err => console.log(`Erro ao sincronizar banco de dados: ${err}`))
 
   
       // Criando novo registro na tabela Status
@@ -20,7 +30,5 @@
           status: 'Status 2'
         })      
       */
-
-
 
 })()
