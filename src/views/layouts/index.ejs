@@ -1,0 +1,20 @@
+<%- include('../partials/header'); %>
+
+
+    <main class="bg-black h-100 p-4">
+        <h1 class="text-light">Rotas</h1>
+        <ul class="text-light">
+            <li><a class="text-light" href="/colaborador/get" target="_blank">Colaborador</a></li>
+            <li><a class="text-light" href="/status/get" target="_blank">Status</a></li>
+            <li><a class="text-light" href="/treinamentos/get" target="_blank">Treinamentos</a></li>
+            <li><a class="text-light" href="/treinamentos-colaborador/get" target="_blank">Treinamento x Colaborador</a></li>
+            <li><a class="text-light" href="/admin-colaboradores/get/<%if (passAPI) {%><%=passAPI%><%}%>" target="_blank">Admin Colaborador</a></li>
+        </ul>
+        <br />
+        <div>
+            <span class="text-light"><b>Chave API: </b><%if (passAPI) {%><%=passAPI%><%}%></span>
+        </div>
+    </main>
+
+
+    <%- include('../partials/footer'); %>

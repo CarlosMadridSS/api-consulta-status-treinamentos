@@ -1,0 +1,46 @@
+<%- include('../partials/header'); %>
+<% if (success_msg.length > 0) { %>
+<%- include('../partials/erros/success_msg', {
+message: success_msg
+}); %>
+
+<% } %>
+<% if (error_msg.length > 0) { %>
+<%- include('../partials/erros/error_msg', {
+message: error_msg
+}); %>
+
+<% } %>
+<div class="h-100 w-100 bg-secondary-subtle">
+    <div
+        class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+        <form action="/admin/login" method="post" class="p-2 form-group"
+            style="width: 100vw; max-width: 600px;">
+            <fieldset class="p-4 rounded-3 bg-light shadow">
+                <legend class="text-center">Autenticação</legend>
+                <hr />
+
+                <div class="mb-3">
+                    <label for="matricula"
+                        class="form-label fw-semibold">Matricula</label>
+                    <input type="number" class="form-control shadow-sm"
+                        id="matricula" name="matricula" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="senha"
+                        class="form-label fw-semibold">Senha</label>
+                    <input type="password" class="form-control shadow-sm"
+                        id="senha" name="senha" required>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center">
+                    <button id="login-button" class="btn btn-primary"
+                        type="submit">Autenticar</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer'); %>

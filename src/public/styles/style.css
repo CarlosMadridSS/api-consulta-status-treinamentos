@@ -1,0 +1,87 @@
+@import url('./card-spreadsheets-manager.css');
+@import url('./card-user-manager.css');
+
+html body{
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.e404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 98vh;
+    color: white;
+}
+
+.index, .e404{
+    background-color: black;
+
+}
+
+.index, .index ul > li > a{
+    color: white;
+}
+
+.h-100{
+    min-height: 100vh !important;
+}
+
+.h-90{
+    min-height: 90vh !important;
+}
+
+.h-75{
+    min-height: 75vh !important;
+}
+
+
+.no-style-button{
+    all: unset; 
+    display: inline-block; 
+    cursor: pointer; 
+}
+
+
+.unstyled-input {
+    all: unset;
+    display: inline; 
+    width: auto; 
+    border: none;
+    padding: 0;
+    margin: 0; 
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    outline: none;
+}
+
+.total-size{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+.alert-personal-flash{
+    z-index: 3;
+    position: fixed;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.mt-6{
+    margin-top: 4rem !important;
+}
+
+.admin-menu-logout{
+    display: flex;
+    justify-content:end;
+    padding-right: 1rem
+}
+

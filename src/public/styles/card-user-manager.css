@@ -1,0 +1,29 @@
+@media (width > 474px) {
+    
+    .card-user-manager > .card-body > .card-user-manager-title{
+        flex: 0 0 70%;
+    }
+
+    .card-user-manager > .card-body > .card-user-manager-buttons{
+        flex: 0 0 30%;
+        justify-content: end;
+    }
+}
+
+
+@media (width < 475px) {
+    
+    .card-user-manager > .card-body > .card-user-manager-title{
+        width: 100%;
+        text-align: center;
+    }
+
+    .card-user-manager > .card-body > .card-user-manager-buttons{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .items-list-users-manage{
+        display: none;
+    }
+}

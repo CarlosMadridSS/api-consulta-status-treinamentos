@@ -1,0 +1,26 @@
+{
+    "colaborador": {
+        "new": {
+            "nome": "Tinoco Martins",
+            "matricula": "3"
+        },
+        "old": {
+            "nome": "Osvaldo da Silva",
+            "matricula": "2"
+        }
+    },
+    "status": {
+        "new": "Atrasado",
+        "old": "Em dia"
+    },
+    "treinamento": {
+        "new": "Manutenção de Equipamentos",
+        "old": "Máquinas Agrícolas"
+    },
+    "treinamento_colaborador": {
+        "new": {
+            "inicio": "2024-10-05",
+            "termino": "2024-10-10"
+        }
+    }
+}

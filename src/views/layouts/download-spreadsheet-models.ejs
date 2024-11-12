@@ -1,0 +1,33 @@
+<%- include('../partials/header'); %>
+
+
+    <div class="h-100 w-100 bg-secondary-subtle">
+
+        <nav class="navbar navbar-dark bg-dark mb-2">
+            <div class="container-fluid">
+                <a href="/admin/menu" class="navbar-brand"><i class="bi bi-arrow-left-square"></i></a>
+                <a href="" class="navbar-brand"></a>
+                <a href="" class="navbar-brand"></a>
+            </div>
+        </nav>
+
+        <div class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+            <div class="p-2 form-group" style="width: 100vw; max-width: 600px;"
+                enctype="multipart/form-data">
+                <fieldset class="p-4 rounded-3 bg-light shadow">
+                    <legend class="text-center">Baixar Modelos</legend>
+                    <hr />
+
+                    <table class="table table-borderless table-light">
+                        <tbody>
+                            <%- include('../partials/row-download-spreadsheet-models', {title: 'Treinamento - Colaborador', route: '/admin/download-model-tables/treinamentos_colaborador'}); %>
+                            <%- include('../partials/row-download-spreadsheet-models', {title: 'Colaborador', route: '/admin/download-model-tables/colaborador'}); %>
+                            <%- include('../partials/row-download-spreadsheet-models', {title: 'Status', route: '/admin/download-model-tables/status'}); %>
+                            <%- include('../partials/row-download-spreadsheet-models', {title: 'Treinamento', route: '/admin/download-model-tables/treinamento'}); %>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer'); %>

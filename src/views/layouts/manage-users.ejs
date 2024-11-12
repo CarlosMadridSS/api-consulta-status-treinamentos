@@ -1,0 +1,152 @@
+<%- include('../partials/header'); %>
+    <div class="w-100 h-100 bg-secondary-subtle">
+        <% if (success_msg.length> 0) { %>
+            <%- include('../partials/erros/success_msg', { message: success_msg }); %>
+
+                <% } %>
+                    <% if (error_msg.length> 0) { %>
+                        <%- include('../partials/erros/error_msg', { message: error_msg }); %>
+
+                            <% } %>
+                                <nav class="navbar navbar-dark bg-dark fixed-top">
+                                    <div class="container-fluid">
+                                        <a class="navbar-brand" href="/admin/menu"><i
+                                                class="bi bi-arrow-left-square"></i></a>
+                                        <a class="navbar-brand">Gerenciar Usuários</a>
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                                            aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+                                            id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                                            <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                                                    Gerenciar Usuários</h5>
+                                                <button type="button" class="btn-close btn-close-white"
+                                                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" aria-current="page"
+                                                            href="/admin/menu"><i class="bi bi-house"></i>
+                                                            Início</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a id="register-user" class="nav-link active" aria-current="page"
+                                                            href="/admin/register"><i class="bi bi-plus-square"></i>
+                                                            Registrar
+                                                            Usuário</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a id="generated-passwords" class="nav-link active" aria-current="page"
+                                                            href="/admin/manage-users/generated-passwords"><i
+                                                                class="bi bi-file-lock"></i> Senhas
+                                                            Geradas</a>
+                                                    </li>
+                                                </ul>
+                                                <form id="form-search-input" class="d-flex mt-3" role="search">
+                                                    <input id="input-search-user" type="number" class="form-control me-2"
+                                                        type="search" placeholder="Matricula" aria-label="Search">
+                                                    <button id="search-user" class="btn btn-success"
+                                                        type="button">Buscar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+
+                                <div style="padding-top: 6rem;"
+                                    class="container d-flex justify-content-center align-items-center flex-column gap-4">
+
+
+                                    <div style="width: 100%;max-width: 800px;" class="list-users-manage">
+
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="d-flex align-items-center"><b>Filtro: </b></span>
+
+                                            <form class="form-inline d-flex gap-1 shadow-sm"
+                                                style="width: 100%; max-width: 200px;">
+                                                <select class="form-select form-select-sm"
+                                                    aria-label="Seleção de Privilégios de Usuários"
+                                                    id="select-role-user" name="select-role-user">
+                                                    <option disabled>Selcione um filtro</option>
+                                                    <option value="todos" selected>Todos</option>
+                                                    <% if (role) { %>
+                                                        <% if (role==='master' ) { %>
+                                                            <option value="admin">Administrador</option>
+                                                            <option value="gerente-treinamentos">Gerente de
+                                                                Treinamentos</option>
+                                                            <option value="tecnico-campo">Técnico de Campo</option>
+
+
+
+
+                                                            <% } %>
+                                                                <% if (role==='admin' ) { %>
+                                                                    <option value="gerente-treinamentos">Gerente de
+                                                                        Treinamentos</option>
+                                                                    <option value="tecnico-campo">Técnico de Campo
+                                                                    </option>
+
+
+
+
+                                                                    <% } %>
+
+                                                                        <% } %>
+                                                </select>
+                                            </form>
+                                        </div>
+
+                                        <div class="items-list-users-manage fw-semibold card mb-3 shadow mb-4">
+                                            <div class="card-body d-flex">
+                                                <div class="row" style="flex: 0 0 70%;">
+                                                    <span class="col">Nome</span>
+                                                    <span class="col">Matricula</span>
+                                                </div>
+                                                <div class="text-end" style="flex: 0 0 30%;">
+                                                    <span>Funções</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% if (users) { %>
+                                            <% users.forEach(user=> { %>
+                                                <%- include('../partials/card-user-manage', { user }); %>
+                                                    <% }) %>
+
+                                                        <% } %>
+                                                            <h1 id="msg-user-no-content" class="h5 py-3 text-center">Não
+                                                                existem
+                                                                usuários para filtro</h1>
+
+                                    </div>
+
+                                </div>
+
+    </div>
+
+    <script src="/js/filterUserDatas.js"></script>
+    <script>
+        const btnId = document.getElementById('search-user')
+
+        btnId.onclick = () => {
+            const input = document.getElementById('input-search-user')
+            const formId = document.getElementById('form-search-input')
+
+
+            if (formId) {
+                if (input.value.length > 0) {
+                    formId.method = 'get'
+                    formId.action = `/admin/manage-users/search/${input.value}`
+                    formId.submit()
+                } else {
+                    formId.method = 'get'
+                    formId.action = `/admin/manage-users`
+                    formId.submit()
+                }
+            }
+        }
+    </script>
+    <%- include('../partials/footer'); %>
