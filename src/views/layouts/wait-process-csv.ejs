@@ -1,0 +1,21 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/wait-process'); %>
+<% if (action) { %>
+ <input type="hidden" value="<%= action %>" id="action">
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const action = document.getElementById('action').value; // Obter o valor do input
+
+        setTimeout(() => {
+            if (action) {
+                const url = `${window.location.origin}${action}`;
+                window.location.href = url; // Redirecionar
+            }
+        }, 2000)
+
+    });
+</script>
+ <% } else { %>
+    <p>Parâmetro não fornecido ou inválido.</p>
+<% } %>
+<%- include('../partials/footer'); %>

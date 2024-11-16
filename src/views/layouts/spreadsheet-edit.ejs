@@ -1,0 +1,131 @@
+<%- include('../partials/header'); %>
+<% if (itemTableName && item && url) { %>
+    <% if (success_msg.length > 0) { %>
+        <%- include('../partials/erros/success_msg', {message: success_msg}); %>
+    <% } %>
+    <% if (error_msg.length > 0) { %>
+        <%- include('../partials/erros/error_msg', {message: error_msg}); %>
+    <% } %>
+    <main class="z-0">
+        <nav class="navbar navbar-dark bg-dark fixed-top pb-3">
+            <div class="container-fluid">
+                <div class="navbar-brand"> <a class="navbar-brand"
+                        href="/admin/manage-spreadsheet"><i
+                            class="bi bi-arrow-left-square"></i></a> <a
+                        id="current-page-btn">
+                        <%= itemTableName.toUpperCase() %>
+                    </a> </div> <button class="navbar-toggler" type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar"
+                    aria-controls="offcanvasDarkNavbar"
+                    aria-label="Toggle navigation"> <span
+                        class="navbar-toggler-icon"></span> </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+                    id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title"
+                            id="offcanvasDarkNavbarLabel">
+                            <%= itemTableName %>(opções)
+                        </h5> <button type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul
+                            class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item"> <a
+                                    href="<%= url.url %>/admin/menu"
+                                    class="nav-link active"
+                                    aria-current="page"><i class="bi bi-house"></i> Início</a> </li>
+                            <li class="nav-item"> <button
+                                    id="button-insert-spreadsheet"
+                                    class="nav-link active"><i class="bi bi-plus-square"></i> Adicionar Item</button>
+                            </li>
+                        </ul>
+                        <form class="d-flex mt-3" role="search"> <input
+                                id="input-search-spreadsheet"
+                                class="form-control me-2" type="search"
+                                placeholder="..." aria-label="Search"> <button
+                                id="search-spreadsheet" class="btn btn-success"
+                                type="button">Buscar</button> </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <table
+            class="table table-spreasheets border border-1 border-dark-subtle mt-6">
+            <thead>
+                <tr id="head-table"> </tr>
+            </thead>
+            <tbody id="body-table"> </tbody>
+        </table>
+    </main> <!--Editar-->
+    <form id="modal-edit-spreadsheet" class="modal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar (
+                        <%= itemTableName %>)
+                    </h5> <button id="btn-close-cancel-modal-sps" type="button"
+                        class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> </div>
+                <div class="modal-footer"> <button id="btn-cancel-modal-sps"
+                        type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancelar</button> <button
+                        id="btn-form-exclude"
+                        class="btn btn-danger">Excluir</button> <button
+                        id="btn-form-save" type="button"
+                        class="btn btn-primary">Salvar</button> </div>
+            </div>
+        </div>
+    </form> <!--Inserir-->
+    <form action="<%= url.url %><%= url.add %>"
+        method="post" id="modal-insert-spreadsheet" class="modal" tabindex="-1" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar (
+                        <%= itemTableName %>)
+                    </h5> <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> </div>
+                <div class="modal-footer"> <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancelar</button> <button
+                        type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="/js/returnUrl.js"></script>
+    <script src="/js/getValuesFromApi.js"></script>
+    <script src="/js/generateInsertSaveFieldsOnSpreadsheet.js"></script>
+    <script src="/js/generateInsertEditFieldsOnSpreadsheet.js"></script>
+    <script src="/js/generateTablesSpreadsheet.js"></script>
+    <script src="/js/submitInformations.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+
+        submitInformations('modal-edit-spreadsheet', 'btn-form-exclude', 'post', '<%=url.url%><%=url.remove%>')
+        submitInformations('modal-edit-spreadsheet', 'btn-form-save', 'post', '<%=url.url%><%=url.save%>')
+        generateTablesSpreadsheet(JSON.parse('<%-item%>'))
+        searchInSpreadsheet(JSON.parse('<%-item%>'))
+        recuperateAttributesFromSpreadsheet('<%= myAttributes %>')
+
+        await generateInsertSaveFieldsOnSpreadsheet(JSON.parse('<%-item%>'), '<%=url.url%>', '<%= myAttributes %>', getValuesFromApi ())
+
+      });
+    </script>
+
+    <% } else { %>
+    <h1 class="p-4 text-center">Ocorreu um problema na recepção dos dados</h1>
+<% } %>
+<%- include('../partials/footer'); %>
+
+

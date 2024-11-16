@@ -1,0 +1,57 @@
+<%- include('../partials/header'); %>
+    <% if (success_msg.length> 0) { %>
+        <%- include('../partials/erros/success_msg', { message: success_msg }); %>
+
+            <% } %>
+                <% if (error_msg.length> 0) { %>
+                    <%- include('../partials/erros/error_msg', { message: error_msg }); %>
+
+                        <% } %>
+                            <div class="h-100 w-100 bg-secondary-subtle">
+
+                                <nav class="navbar navbar-dark bg-dark mb-2">
+                                    <div class="container-fluid">
+                                        <a href="/admin/menu" class="navbar-brand"><i
+                                                class="bi bi-arrow-left-square"></i></a>
+                                        <a href="" class="navbar-brand"></a>
+                                        <a href="" class="navbar-brand"></a>
+                                    </div>
+                                </nav>
+
+                                <div
+                                    class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="p-2 form-group" style="width: 100vw; max-width: 600px;"
+                                        enctype="multipart/form-data">
+                                        <fieldset class="p-4 rounded-3 bg-light shadow">
+                                            <div class="text-center">
+                                                <legend>Exportar Modelos</legend>
+                                                <strong>Tabelas Relacionadas</strong>
+                                                <br />
+                                                <small>Todas as tabelas devem conter dados para que os dados possam ser
+                                                    exportados</small>
+                                            </div>
+                                            <hr />
+
+                                            <table class="table table-borderless table-light">
+                                                <tbody>
+                                                    <%- include('../partials/row-download-spreadsheet-models', {
+                                                        title: 'Treinamento - Colaborador' ,
+                                                        route: '/admin/export-datas/download/treinamentos_colaborador'
+                                                        }); %>
+                                                        <%- include('../partials/row-download-spreadsheet-models', {
+                                                            title: 'Colaborador' ,
+                                                            route: '/admin/export-datas/download/colaborador' }); %>
+                                                            <%- include('../partials/row-download-spreadsheet-models', {
+                                                                title: 'Status' ,
+                                                                route: '/admin/export-datas/download/status' }); %>
+                                                                <%- include('../partials/row-download-spreadsheet-models',
+                                                                    { title: 'Treinamento' ,
+                                                                    route: '/admin/export-datas/download/treinamento'
+                                                                    }); %>
+                                                </tbody>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <%- include('../partials/footer'); %>

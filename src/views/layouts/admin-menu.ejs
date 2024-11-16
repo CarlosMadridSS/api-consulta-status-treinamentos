@@ -1,0 +1,65 @@
+<%- include('../partials/header'); %>
+    <div class="w-100 h-100 bg-secondary-subtle">
+        <% if (success_msg.length> 0) { %>
+            <%- include('../partials/erros/success_msg', {message: success_msg}); %>
+                <% } %>
+                    <% if (error_msg.length> 0) { %>
+                        <%- include('../partials/erros/error_msg', {message: error_msg}); %>
+                            <% } %>
+                                <nav class="navbar navbar-dark bg-dark fixed-top">
+                                    <div class="container-fluid ">
+                                        <div></div> <a class="navbar-brand">Menu Inicial</a>
+                                        <div class="admin-menu-logout"> <button id="modal-logout-btn"
+                                                class="no-style-button"> <i
+                                                    class="bi bi-box-arrow-left text-white fs-4"></i>
+                                            </button> </div>
+                                    </div>
+                                </nav>
+                                <div style="padding-top: 6rem;" class="container">
+                                    <div
+                                        class="d-flex align-content-stretch flex-wrap gap-5 justify-content-center text-center">
+                                        <a href="/admin/insert-spreadsheet" style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Importar Dados</a>
+                                        <a href="/admin/manage-spreadsheet" style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Gerenciar
+                                            Planilhas</a> <a href="/admin/manage-users"
+                                            style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Gerenciar
+                                            Usuários</a> <a href="/admin/download-model-tables"
+                                            style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Baixar Modelos</a>
+                                        <a href="/admin/export-datas" style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Exportar Dados</a>
+                                        <a href="/admin/my-profile" style="width: 100%; max-width: 300px;"
+                                            class="card py-4 shadow text-decoration-none">Meu Perfil</a>
+                                    </div>
+                                </div>
+                                <div id="modal-logout" class="modal" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Autenticação</h5> <button type="button"
+                                                    class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Deseja sair da aplicação?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                                    <a id="ancor-logout" href="/admin/logout"
+                                                    class="btn btn-primary text-decoration-none">Sair</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#modal-logout-btn').click(function () {
+                $('#modal-logout').modal('show');
+            });
+        });
+    </script>
+    <%- include('../partials/footer'); %>

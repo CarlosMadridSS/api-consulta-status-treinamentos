@@ -1,0 +1,69 @@
+<%- include('../partials/header'); %>
+<div class="h-100 w-100 bg-secondary-subtle">
+    <nav class="navbar navbar-dark bg-dark mb-2">
+        <div class="container-fluid">
+            <a href="/admin/menu" class="navbar-brand"><i class="bi bi-arrow-left-square"></i></a>
+            <a href="" class="navbar-brand"></a>
+            <a href="" class="navbar-brand"></a>
+        </div>
+    </nav>
+    <div
+        class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+        <form action="<%- action %>"
+            method="<%- method %>" class="p-2 form-group"
+            style="width: 100vw; max-width: 600px;"
+            enctype="multipart/form-data">
+            <fieldset class="p-4 rounded-3 bg-light shadow">
+                <legend>Inserção de Planilha</legend> <strong>Insira as
+                    planilhas em formato CSV</strong>
+                <hr />
+                <div class="mb-3"> <label
+                        for="treinamento-colaborador-spreadsheet-input"
+                        class="form-label fw-semibold">Treinamento -
+                        Colaborador</label> <input class="form-control"
+                        type="file"
+                        id="treinamento-colaborador-spreadsheet-input"
+                        aria-describedby="treinamento-colaborador-spreadsheet-input-feedback"
+                        name="treinamentoColaboradorFile" accept=".csv"
+                        required>
+                    <div id="treinamento-colaborador-spreadsheet-input-feedback"
+                        class="invalid-feedback">O arquivo selecionado não é do
+                        formato CSV</div>
+                </div>
+                <div class="mb-3"> <label for="colaborador-spreadsheet-input"
+                        class="form-label fw-semibold">Colaborador</label>
+                    <input class="form-control" type="file"
+                        id="colaborador-spreadsheet-input"
+                        aria-describedby="colaborador-spreadsheet-input-feedback"
+                        name="colaboradorFile" accept=".csv" required>
+                    <div id="colaborador-spreadsheet-input-feedback"
+                        class="invalid-feedback">O arquivo selecionado não é do
+                        formato CSV</div>
+                </div>
+                <div class="mb-3"> <label for="status-spreadsheet-input"
+                        class="form-label fw-semibold">Status</label> <input
+                        class="form-control" type="file"
+                        id="status-spreadsheet-input"
+                        aria-describedby="status-spreadsheet-input-feedback"
+                        name="statusFile" accept=".csv" required>
+                    <div id="status-spreadsheet-input-feedback"
+                        class="invalid-feedback">O arquivo selecionado não é do
+                        formato CSV</div>
+                </div>
+                <div class="mb-3"> <label for="treinamento-spreadsheet-input"
+                        class="form-label fw-semibold">Treinamento</label>
+                    <input class="form-control" type="file"
+                        id="treinamento-spreadsheet-input"
+                        aria-describedby="treinamento-spreadsheet-input-feedback"
+                        name="treinamentoFile" accept=".csv" required>
+                    <div id="treinamento-spreadsheet-input-feedback"
+                        class="invalid-feedback">O arquivo selecionado não é do
+                        formato CSV</div>
+                </div> <button id="btn-spreadsheet" type="submit"
+                    class="btn btn-primary">Enviar</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script src="/js/file-validator-csv.js"></script>
+<%- include('../partials/footer'); %>

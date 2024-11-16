@@ -1,0 +1,39 @@
+<div id="card-user-<%=user.id%>" class="card shadow card-user-manager mt-3" name="card-user">
+    <form class="card-body d-flex flex-row flex-wrap" action="/admin/manage-users/edit/<%=user.id%>" method="get">
+      <div class="text-truncate fw-semibold card-user-manager-title row">
+        <div name="nome" class="col text-truncate"><%=user.nome%> <%=user.sobrenome%></div>
+        <div name="matricula" class="col text-truncate"><%=user.matricula%></div>
+      </div>
+      <div class="d-flex flex-row gap-4 card-user-manager-buttons">
+        <button id="edit-user" type="submit" class="no-style-button">
+          <img src="/assets/icons/edit.svg" alt="editar">
+        </button>
+        <button id="delete-user" type="button" class="no-style-button btn-notice-modal-spreadshet"  data-bs-toggle="modal" data-bs-target="#modalCardUser-<%=user.id%>">
+          <img src="/assets/icons/cancel.svg" alt="excluir">
+        </button>
+      </div>
+      <input type="hidden" name="id" value="<%=user.id%>">
+    </form>
+    <input type="hidden" name="role" value="<%=user.privilegios%>">
+  </div>
+
+
+<!-- Delete User Modal -->
+<form action="/admin/manage-users/remove" method="post" class="modal fade" id="modalCardUser-<%=user.id%>" tabindex="-1" aria-labelledby="modalCardUserLabel-<%=user.id%>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalCardUserLabel-<%=user.id%>">Exclusão de Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Deseja prosseguir com a exclusão do usuário <b><%=user.nome%> <%=user.sobrenome%> - <%=user.matricula%></b>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <input type="hidden" name="id" value="<%=user.id%>">
+      </div>
+    </div>
+  </div>
+</form>

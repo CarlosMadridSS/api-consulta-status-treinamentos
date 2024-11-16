@@ -1,0 +1,8 @@
+{
+    "url": {
+        "pathnames": {
+            "manage_spreadsheet": "/admin/manage-spreadsheet",
+            "menu": "/admin/menu"
+        }
+    }
+}

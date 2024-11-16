@@ -1,0 +1,119 @@
+<%- include('../partials/header'); %>
+
+        <%if (success_msg.length> 0) {%>
+          <%- include('../partials/erros/success_msg', {message: success_msg}); %>
+        <%}%>
+
+
+        <%if (error_msg.length> 0) {%>
+          <%- include('../partials/erros/error_msg', {message: error_msg}); %>
+        <%}%>
+
+              <div class="h-100 w-100 bg-secondary-subtle">
+
+                <nav class="navbar navbar-dark bg-dark mb-2">
+                  <div class="container-fluid">
+                      <a href="/admin/menu" class="navbar-brand"><i class="bi bi-arrow-left-square"></i></a>
+                      <a href="" class="navbar-brand"></a>
+                      <a href="" class="navbar-brand"></a>
+                  </div>
+              </nav>
+
+                <div class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+                  <div class="p-2 form-group" style="width: 100vw; max-width: 600px;">
+                    <div class="p-4 rounded-3 bg-light shadow">
+                      <legend class="text-center">Meu Usuário</legend>
+                      <hr />
+
+
+                      <div class="d-flex align-items-center flex-column">
+                        <table class="table table-striped table-bordered" style="width: 100%; max-width: 500px;">
+                          <tbody>
+                            <tr>
+                              <td class="fw-semibold">Nome: </td>
+                              <td>
+                                <%if (user.nome) {%>
+                                  <%=user.nome%>
+                                <%}else{%>
+                                  (<%=user.privilegio%>)
+                                <%}%>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold">Sobrenome: </td>
+                              <td>
+                                <%if (user.sobrenome) {%>
+                                  <%=user.sobrenome%>
+                                <%}else{%>
+                                  (<%=user.privilegio%>)
+                                <%}%>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold">Matricula: </td>
+                              <td>
+                                <%=user.matricula%>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold">Privilégio: </td>
+                              <td>
+                                <%=user.privilegio%>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="fw-semibold">Senha temporária: </td>
+                              <td>
+                                <%=user.senha_temp%>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="my-2 d-flex justify-content-center w-100">
+                          <button class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modalChangePass">Alterar senha</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Modal -->
+              <form action="/admin/my-profile/change-password" method="post" class="modal fade" id="modalChangePass"
+                tabindex="-1" aria-labelledby="modalChangePassLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="modalChangePassLabel">Mundança de Senha</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                      <div class="mb-3">
+                        <label for="passInput" class="form-label fw-semibold">Senha</label>
+                        <input name="senha" type="password"
+                          class="form-control border border-secondary border-1 shadow-sm" id="passInput"
+                          aria-describedby="Input Pass">
+                      </div>
+                      <div class="mb-3">
+                        <label for="repeatInputPass" class="form-label fw-semibold">Contra-senha</label>
+                        <input name="contraSenha" type="password"
+                          class="form-control border border-secondary border-1 shadow-sm" id="repeatInputPass">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+
+
+              <%- include('../partials/footer'); %>

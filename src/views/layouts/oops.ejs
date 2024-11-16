@@ -1,0 +1,20 @@
+<%- include('../partials/header'); %>
+<div class="h-100 w-100 bg-secondary-subtle">
+    <div
+        class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+        <div class="p-2" style="width: 100vw; max-width: 600px;">
+            <div class="p-4 rounded-3 bg-light shadow">
+                <legend class="text-center">Oops. Ocorreu um problema! <i
+                        class="bi bi-exclamation-square"></i></legend> <strong>
+                    <%= msg.error %>
+                </strong>
+                <hr />
+                <div class="d-flex justify-content-center"> <a
+                        href="<%= internalTemplate %>"
+                        class="btn btn-secondary"> <span class="px-3">Ok</span>
+                    </a> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer'); %>

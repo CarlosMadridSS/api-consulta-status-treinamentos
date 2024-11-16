@@ -1,0 +1,27 @@
+@media (width > 474px) {
+    
+    .card-spreadsheets-manager > .card-body > .card-spreadsheets-manager-title{
+        flex: 0 0 70%;
+    }
+
+    .card-spreadsheets-manager > .card-body > .card-spreadsheets-manager-buttons{
+        flex: 0 0 30%;
+        justify-content: end;
+    }
+}
+
+
+@media (width < 475px) {
+    
+    .card-spreadsheets-manager > .card-body > .card-spreadsheets-manager-title{
+        width: 100%;
+        text-align: center;
+    }
+
+    .card-spreadsheets-manager > .card-body > .card-spreadsheets-manager-buttons{
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+

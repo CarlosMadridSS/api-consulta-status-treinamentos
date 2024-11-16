@@ -1,0 +1,111 @@
+<%- include('../partials/header'); %>
+    <div class="h-100 w-100 bg-secondary-subtle">
+        <nav class="navbar navbar-dark bg-dark mb-2">
+            <div class="container-fluid">
+                <a href="
+            
+            <% if (route.includes('/admin/register')) { %>
+                /admin/manage-users
+            <% } else if (route.includes('/admin/manage-users/edit')) { %>
+                /admin/manage-users
+            <% } %>
+
+            " class="navbar-brand"><i class="bi bi-arrow-left-square"></i></a>
+                <a href="" class="navbar-brand"></a>
+                <a href="" class="navbar-brand"></a>
+            </div>
+        </nav>
+        <div class="container-sm h-75 d-flex flex-column justify-content-center align-items-center">
+            <form action="
+            <% if (route.includes('/admin/register')) { %>
+                /admin/register/add
+            <% } else if (route.includes('/admin/manage-users/edit')) { %>
+                /admin/manage-users/edit/save
+            <% } else if (route.includes('/admin/my-profile/edit')) { %>
+                /admin/my-profile/edit/save
+            <% } %>" method="post" class="p-2 form-group" style="width: 100vw; max-width: 600px;">
+                <fieldset class="p-4 rounded-3 bg-light shadow">
+                    <legend class="text-center">
+                        <% if (route.includes('/admin/manage-users/edit') || route.includes('/admin/my-profile/edit')) {
+                            %>
+                            Editar Usuário
+                            <% } else { %>Registrar Usuário
+
+
+
+                                <% } %>
+                    </legend>
+                    <hr />
+
+                    <div class="mb-3">
+                        <label for="primeiro-nome" class="form-label fw-semibold">Primeiro nome</label>
+                        <input type="text" class="form-control shadow-sm" id="primeiro-nome" name="primeiroNome"
+                            value="<% if (data.nome) { %><% if (data.nome.length > 0) { %><%= data.nome %><% } %><% } %>"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ultimo-nome" class="form-label fw-semibold">Último nome</label>
+                        <input type="text" class="form-control shadow-sm" id="ultimo-nome" name="ultimoNome"
+                            value="<% if (data.sobrenome) { %><% if (data.sobrenome.length > 0) { %><%= data.sobrenome %><% } %><% } %>"
+                            required>
+                    </div>
+                    <% if (route !=='/admin/my-profile/edit' ) { %>
+                        <div class="mb-3">
+                            <label for="matricula" class="form-label fw-semibold">Matricula</label>
+                            <input type="number" class="form-control shadow-sm" id="matricula" name="matricula"
+                                value="<% if (data.matricula) { %><% if (String(data.matricula).length > 0) { %><%= data.matricula %><% } %><% } %>"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="privilegio" class="form-label fw-semibold">Privilégios
+                                <% if (data.privilegios) { %>
+                                    <% if (data.privilegios.length> 0) { %>
+                                        <small>(atual:
+                                            <%= data.privilegios %>)
+                                        </small>
+
+
+
+                                        <% } %>
+
+                                            <% } %>
+                            </label>
+                            <select class="form-select shadow-sm" id="privilegio" name="privilegio" required>
+                                <option selected disabled value="">Selecione...</option>
+                                <% if (role==='master' ) { %>
+                                    <option value="admin">Administrador</option>
+
+
+
+
+
+                                    <% } %>
+                                        <option value="gerente-treinamentos">Gerente de
+                                            Treinamentos</option>
+                                        <option value="tecnico-campo">Técnico de campo</option>
+                            </select>
+                        </div>
+
+
+
+                        <% } %>
+                            <%- include('../partials/fields-pass-generate', { route }); %>
+                                <div class="mb-3 d-flex justify-content-center">
+                                    <button class="btn btn-primary" type="submit">
+                                        <% if (route.includes('/admin/manage-users/edit') ||
+                                            route.includes('/admin/my-profile/edit')) { %>
+                                            Editar
+                                            <% } else { %>Registrar
+
+
+                                                <% } %>
+                                    </button>
+                                </div>
+                                <input type="hidden" name="id" value="<%= data.id %>">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <%- include('../partials/footer'); %>

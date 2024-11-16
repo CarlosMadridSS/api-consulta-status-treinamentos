@@ -1,0 +1,6 @@
+/node_modules
+/src/public/exports/colaborador.csv/*
+/cypress/screenshots/authentication/login.spec.cy.js/*
+/cypress/screenshots/authentication/logout.spec.cy.js/*
+/cypress/screenshots/spreadsheets/crud-spreadsheet.spec.cy.js/*
+/cypress/screenshots/user/user.spec.cy.js/*

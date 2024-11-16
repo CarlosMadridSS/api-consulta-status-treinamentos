@@ -1,0 +1,54 @@
+<%- include('../partials/header'); %>
+<div class="w-100 h-100 bg-secondary-subtle">
+    <% if (success_msg.length > 0) { %>
+        <%- include('../partials/erros/success_msg', {message: success_msg}); %>
+    <% } %>
+    <% if (error_msg.length > 0) { %>
+        <%- include('../partials/erros/error_msg', {message: error_msg}); %>
+    <% } %>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid"> <a class="navbar-brand"
+                href="/admin/menu"><i class="bi bi-arrow-left-square"></i></a>
+            <a class="navbar-brand">Gerenciar Planilhas</a> <button
+                class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation"> <span
+                    class="navbar-toggler-icon"></span> </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+                id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                        Gerenciar Planilhas</h5> <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item"> <a class="nav-link active"
+                                aria-current="page"
+                                href="/admin/menu"><i class="bi bi-house"></i> Início</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div style="padding-top: 6rem;"
+        class="container d-flex justify-content-center align-items-center flex-column gap-4">
+        <% if (tableName) { %>
+            <%- include('../partials/card-spreadsheets-manage', {titulo: tableName.colaborador.name,url: tableName.url,routeEdit: tableName.colaborador.route}); %>
+            <%- include('../partials/card-spreadsheets-manage', {titulo: tableName.status.name,url: tableName.url,routeEdit: tableName.status.route}); %>
+            <%- include('../partials/card-spreadsheets-manage', {titulo: tableName.treinamento.name,url: tableName.url,routeEdit: tableName.treinamento.route}); %>
+            <span>Tabela Referenciada</span>
+            <%- include('../partials/card-spreadsheets-manage', {titulo: tableName.treinamentoColaborador.name,url: tableName.url,routeEdit: tableName.treinamentoColaborador.route}); %>
+            <% } else { %>
+            <h1 class="text-center">Não há planilhas</h1>
+        <% } %>
+        <%- include(`../partials/notice-modal-exclude-spreadsheet`, {titulo: tableName.colaborador.name,url: tableName.url,drop: tableName.colaborador.drop}); %>
+        <%- include(`../partials/notice-modal-exclude-spreadsheet`, {titulo: tableName.status.name,url: tableName.url,drop: tableName.status.drop}); %>
+        <%- include(`../partials/notice-modal-exclude-spreadsheet`, {titulo: tableName.treinamento.name,url: tableName.url,drop: tableName.treinamento.drop}); %>
+        <%- include(`../partials/notice-modal-exclude-spreadsheet`, {titulo: tableName.treinamentoColaborador.name,url: tableName.url,drop: tableName.treinamentoColaborador.drop}); %>
+    </div>
+</div>
+<%- include('../partials/footer'); %>
