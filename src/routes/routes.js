@@ -15,6 +15,7 @@ const authorize = require('../middlewares/authenticateToken')
 
     //Index
     routes.get('/', authorize(['master']), (req, res) => {
+        console.log('GET / route hit');
         res.render('layouts',{ title: 'Página Inicial', passAPI: process.env.PASS_API});
     })
 
